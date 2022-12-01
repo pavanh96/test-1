@@ -16,5 +16,10 @@ sh 'git --version'
    sh 'docker build -t test .'
   }
  }
+ stage('Docker Image'){
+  steps{
+   sh 'docker images'
+  }
+ }
  }
  }
