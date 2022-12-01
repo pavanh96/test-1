@@ -11,5 +11,10 @@ steps{
 sh 'git --version'
 }
 }
+ stage('Docker file'){
+  steps{
+   sh 'docker build -t test .'
+  }
+ }
  }
  }
