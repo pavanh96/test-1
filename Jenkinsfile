@@ -13,7 +13,7 @@ sh 'git --version'
 }
  stage('Docker file'){
   steps{
-   sh 'docker build -t test .'
+   sh 'docker build -t test9 .'
   }
  }
  stage('Docker Image'){
