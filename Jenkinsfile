@@ -13,7 +13,6 @@ sh 'git --version'
 }
  stage('Docker file'){
   steps{
-   sh 'sudo su'
    sh 'docker build -t test .'
   }
  }
