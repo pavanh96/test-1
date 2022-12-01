@@ -6,5 +6,10 @@ stages {
  sh 'docker --version'
  }
  }
+ stage ('Git Version'){
+steps{
+sh 'git --version'
+}
+}
  }
  }
