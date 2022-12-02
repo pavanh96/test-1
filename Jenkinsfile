@@ -1,19 +1,31 @@
 pipeline{
 agent any
+ environment{
+  Docker_Image_Name = 'myimage'
+  Docker_Tag= 'v1'
+   }
 stages {
- stage('Docker'){
- steps{
- sh 'docker --version'
- }
+ stage ('pre-check'){
+  parallel {
+   stage ('Docker-version'){
+    steps{
+     retry(3){
+      sh 'docker --version'
+     }
+    }     
  }
  stage ('Git Version'){
 steps{
 sh 'git --version'
 }
 }
+  }
+ }
+
+
  stage('Docker file'){
   steps{
-   sh 'docker build -t test9 .'
+   sh 'docker build -t ${Docker_Image_Name}:${BUILD_NUMBER} .'
   }
  }
  stage('Docker Image'){
