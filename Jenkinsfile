@@ -4,7 +4,8 @@ agent any
   Docker_Image_Name = 'myimage'
   Docker_Tag= 'v1'
    }
- options { buildDiscarder(logRotator(numToKeepStr: '10')) disableConcurrentBuilds()
+ options { buildDiscarder(logRotator(numToKeepStr: '10')) 
+          disableConcurrentBuilds()
    }
 stages {
  stage ('pre-check'){
