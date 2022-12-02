@@ -61,10 +61,10 @@ sh 'git --version'
   }
  }
  
- stage('Docker Image'){
-  steps{
+ }
+ post{
+  always{
    sh 'docker images'
   }
- }
  }
  }
