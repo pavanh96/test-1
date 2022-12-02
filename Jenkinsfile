@@ -44,11 +44,7 @@ sh 'git --version'
    sh 'docker rm -f \$(docker ps -a -q) 2> /dev/null || true'
   }
  }
- stage('Docker Image CleanUp'){
-  steps{
-   sh 'docker system prune -af'
-  }
- }
+ 
  stage('Docker-Deploy'){
   input{
    message "Do you want to proceed for deployment ?"
@@ -56,6 +52,12 @@ sh 'git --version'
   steps{
    sh ' docker run -itd -p 80:80 ${Docker_Image_Name}:${BUILD_NUMBER}'
    sh 'docker ps'
+  }
+ }
+ 
+ stage('Docker Image CleanUp'){
+  steps{
+   sh 'docker system prune -af'
   }
  }
  
