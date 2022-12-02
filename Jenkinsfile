@@ -4,8 +4,10 @@ agent any
   Docker_Image_Name = 'myimage'
   Docker_Tag= 'v1'
    }
- options { buildDiscarder(logRotator(numToKeepStr: '10')) 
-          disableConcurrentBuilds()
+ options { 
+  timestamps()
+  buildDiscarder(logRotator(numToKeepStr: '10')) 
+  disableConcurrentBuilds()
    }
 stages {
  stage ('pre-check'){
@@ -29,6 +31,11 @@ sh 'git --version'
 
  stage('Docker file'){
   steps{
+   when{
+    expression{
+      return GIT_BRANCH == "origin/test" 
+    }
+   }
    sh 'docker build -t ${Docker_Image_Name}:${BUILD_NUMBER} .'
    sh ' docker inspect ${Docker_Image_Name}:${BUILD_NUMBER} '
   }
