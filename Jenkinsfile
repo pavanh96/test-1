@@ -2,6 +2,7 @@ pipeline{
 agent any
  environment{
   Docker_Image_Name = 'myimage'
+  Docker_Tag= 'v1'
    }
 stages {
  stage('Docker'){
@@ -16,7 +17,7 @@ sh 'git --version'
 }
  stage('Docker file'){
   steps{
-   sh 'docker build -t $Docker_Image_Name .'
+   sh 'docker build -t $Docker_Image_Name:$Docker_Tag .'
   }
  }
  stage('Docker Image'){
