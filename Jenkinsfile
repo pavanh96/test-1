@@ -7,9 +7,7 @@ agent any
 stages {
  stage('Docker'){
  steps{
-  retry (3){
  sh 'docker --version'
-  }
    timeout(time: 5 , unit:'SECONDS'){
     sh 'sleep 10'
  }
