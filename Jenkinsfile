@@ -31,7 +31,7 @@ sh 'git --version'
  stage('Docker file'){
    when{
     expression{
-      return GIT_BRANCH == "origin/test" 
+      return GIT_BRANCH == "origin/pavan" 
     }
    }
   steps{
