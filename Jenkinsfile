@@ -39,6 +39,11 @@ sh 'git --version'
    sh ' docker inspect ${Docker_Image_Name}:${BUILD_NUMBER} '
   }
  }
+ stage('Docker cleanUp'){
+  steps{
+   sh 'docker rm -f \$(sudo docker ps -a -q) 2> /dev/null || true'
+  }
+ }
  stage('Docker-Deploy'){
   steps{
    sh ' docker run -itd -p 80:80 ${Docker_Image_Name}:${BUILD_NUMBER}'
