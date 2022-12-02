@@ -9,10 +9,6 @@ stages {
  steps{
  sh 'docker --version'
  }
-   timeout(time: 5 , unit: 'SECONDS'){
-    sh 'sleep 10'
- }
- }
  }
  stage ('Git Version'){
 steps{
