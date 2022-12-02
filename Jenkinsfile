@@ -10,7 +10,7 @@ stages {
   retry(3){
  sh 'docker --version'
  }
-  timeout(time:2, unit:'SECONDS'){
+  timeout(time: 2, unit: 'SECONDS'){
    sh 'sleep 10'
   }
  }
