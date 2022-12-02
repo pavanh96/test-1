@@ -73,7 +73,7 @@ sh 'git --version'
    sh ' docker rm -f \$(sudo docker ps -a -q) 2> /dev/null || true'
   }
   success{
-   sh ' curl localhost'
+   sh 'Success CI'
   }
  }
  }
