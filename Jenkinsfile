@@ -27,8 +27,8 @@ sh 'git --version'
   steps{
    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 230226440659.dkr.ecr.us-east-1.amazonaws.com'
    sh 'docker build -t jenkins-test .'
-   sh 'docker tag jenkins-test:latest public.ecr.aws/z1i5d8y3/jenkins-test:latest'
-   sh 'docker push public.ecr.aws/z1i5d8y3/jenkins-test:latest'
+   sh 'docker tag jenkinstest:latest 230226440659.dkr.ecr.us-east-1.amazonaws.com/jenkinstest:latest'
+   sh 'docker push 230226440659.dkr.ecr.us-east-1.amazonaws.com/jenkinstest:latest'
   }
  }
  stage('Docker Image'){
