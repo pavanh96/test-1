@@ -7,7 +7,9 @@ agent any
 stages {
  stage('Docker'){
  steps{
+  retry(3){
  sh 'docker --version'
+ }
  }
  }
  stage ('Git Version'){
