@@ -45,6 +45,9 @@ sh 'git --version'
   }
  }
  stage('Docker-Deploy'){
+  input{
+   message "Do you want to proceed for deployment ?"
+  }
   steps{
    sh ' docker run -itd -p 80:80 ${Docker_Image_Name}:${BUILD_NUMBER}'
    sh 'docker ps'
