@@ -16,7 +16,6 @@ stages {
     steps{
      retry(3){
       sh 'docker --version'
-      sh 'sleep 20'
      }
     }     
  }
