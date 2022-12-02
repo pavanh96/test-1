@@ -4,8 +4,7 @@ agent any
   Docker_Image_Name = 'myimage'
   Docker_Tag= 'v1'
    }
- options { timestamps() 
- skipDefaultCheckout() 
+ options { buildDiscarder(logRotator(numToKeepStr: '1'))
    }
 stages {
  stage ('pre-check'){
