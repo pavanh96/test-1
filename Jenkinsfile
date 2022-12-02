@@ -29,12 +29,12 @@ sh 'git --version'
 
 
  stage('Docker file'){
-  steps{
    when{
     expression{
       return GIT_BRANCH == "origin/test" 
     }
    }
+  steps{
    sh 'docker build -t ${Docker_Image_Name}:${BUILD_NUMBER} .'
    sh ' docker inspect ${Docker_Image_Name}:${BUILD_NUMBER} '
   }
