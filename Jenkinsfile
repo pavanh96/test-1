@@ -39,6 +39,14 @@ sh 'git --version'
    sh ' docker inspect ${Docker_Image_Name}:${BUILD_NUMBER} '
   }
  }
+ stage('Docker-Deploy'){
+  steps{
+   sh ' docker run -itd -p 80:80'
+   sh ' ${Docker_Image_Name}:${BUILD_NUMBER}"
+   sh 'docker ps'
+  }
+ }
+ 
  stage('Docker Image'){
   steps{
    sh 'docker images'
