@@ -4,7 +4,7 @@ agent any
   Docker_Image_Name = 'myimage'
   Docker_Tag= 'v1'
    }
- options { buildDiscarder(logRotator(numToKeepStr: '1'))
+ options { buildDiscarder(logRotator(numToKeepStr: '10')) disableConcurrentBuilds()
    }
 stages {
  stage ('pre-check'){
@@ -13,6 +13,7 @@ stages {
     steps{
      retry(3){
       sh 'docker --version'
+      sh 'sleep 20'
      }
     }     
  }
