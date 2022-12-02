@@ -4,7 +4,7 @@ agent any
   Docker_Image_Name = 'myimage'
   Docker_Tag= 'v1'
    }
- options{ timestamp() }
+ options { timestamps() }
 stages {
  stage ('pre-check'){
   parallel {
