@@ -66,5 +66,8 @@ sh 'git --version'
   always{
    sh 'docker images'
   }
+  aborted{
+   sh 'docker ps'
+  }
  }
  }
