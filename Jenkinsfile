@@ -5,14 +5,15 @@ agent any
   Docker_Tag= 'v1'
    }
 stages {
+ stage('pre-check'){
+  parallel{
  stage('Docker'){
  steps{
   retry(3){
  sh 'docker --version'
- }
-  timeout(time: 2, unit: 'SECONDS'){
-   sh 'sleep 10'
   }
+ }
+ }
  }
  }
  stage ('Git Version'){
