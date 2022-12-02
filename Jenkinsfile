@@ -17,7 +17,7 @@ sh 'git --version'
 }
  stage('Docker file'){
   steps{
-   sh 'docker build -t ${env.BUILD_NUMBER} .'
+   sh 'docker build -t ${Docker_Image_Name}:${env.BUILD_NUMBER} .'
   }
  }
  stage('Docker Image'){
