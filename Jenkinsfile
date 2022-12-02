@@ -13,6 +13,7 @@ stages {
     sh 'sleep 10'
  }
  }
+ }
  stage ('Git Version'){
 steps{
 sh 'git --version'
