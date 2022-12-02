@@ -28,14 +28,14 @@ sh 'git --version'
  }
 
 
- stage('Docker file'){
+ stage('Docker-Build'){
    when{
     expression{
       return GIT_BRANCH == "origin/pavan" 
     }
    }
   steps{
-   sh 'docker build -t ${Docker_Image_Name}:${BUILD_NUMBER} .'
+   sh 'docker builds -t ${Docker_Image_Name}:${BUILD_NUMBER} .'
    sh ' docker inspect ${Docker_Image_Name}:${BUILD_NUMBER} '
   }
  }
@@ -69,5 +69,7 @@ sh 'git --version'
   aborted{
    sh 'docker ps'
   }
+  failure{
+   sh ' docker rm -f \$(sudo docker ps -a -q) 2> /dev/null || true'
  }
  }
