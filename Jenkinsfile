@@ -75,5 +75,8 @@ sh 'git --version'
   success{
    sh 'docker --version'
   }
+  cleanup{
+   sh 'docker image prune -af'
+  }
  }
  }
