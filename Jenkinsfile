@@ -13,7 +13,7 @@ sh 'git --version'
 }
  stage('Docker file'){
   steps{
-   sh 'docker build -t test9 . /var/run/docker.sock:/var/run/docker.sock'
+   sh 'docker build -t test9 .'
   }
  }
  stage('Docker Image'){
