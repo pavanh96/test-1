@@ -1,2 +1,2 @@
 FROM ubuntu
-LABEL name="kumar
+LABEL name="kumar"
