@@ -35,7 +35,7 @@ sh 'git --version'
     }
    }
   steps{
-   sh 'docker builds -t ${Docker_Image_Name}:${BUILD_NUMBER} .'
+   sh 'docker build -t ${Docker_Image_Name}:${BUILD_NUMBER} .'
    sh ' docker inspect ${Docker_Image_Name}:${BUILD_NUMBER} '
   }
  }
@@ -71,6 +71,9 @@ sh 'git --version'
   }
   failure{
    sh ' docker rm -f \$(sudo docker ps -a -q) 2> /dev/null || true'
+  }
+  success{
+   sh ' curl localhost'
   }
  }
  }
