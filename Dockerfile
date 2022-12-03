@@ -1,2 +1,3 @@
-FROM ubuntu
+FROM httpd
 LABEL name="kumar"
+COPY index.html /usr/local/apache2/htdocs/
