@@ -33,7 +33,7 @@ sh 'git --version'
  }
  stage('Docker Deploy'){
   steps{
-   sh ' docker run -itd -p 80:80 docker push 230226440659.dkr.ecr.us-east-1.amazonaws.com/jenkins-test:${BUILD_NUMBER}'
+   sh ' docker run -itd -p 8081:9002 docker push 230226440659.dkr.ecr.us-east-1.amazonaws.com/jenkins-test:${BUILD_NUMBER}'
    sh ' docker ps'
   }
  }
