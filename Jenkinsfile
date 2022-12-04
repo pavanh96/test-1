@@ -37,6 +37,15 @@ sh 'git --version'
    sh ' docker ps'
   }
  }
+ stage('Prod-Deploy'){
+  steps{
+    sshagent(['Prod']) {
+
+                sh "ssh -o StrictHostKeyChecking=no -l ubuntu 18.212.61.111 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 230226440659.dkr.ecr.us-east-1.amazonaws.com'"
+
+                 sh "ssh -o StrictHostKeyChecking=no -l ubuntu 18.212.61.111 'sudo docker run -itd -p 80:80 230226440659.dkr.ecr.us-east-1.amazonaws.com/jenkins-test:${BUILD_NUMBER}'"
+  }
+ }
  stage('Docker Image'){
   steps{
    sh 'docker images'
