@@ -1,0 +1,19 @@
+job('job-auto-pilot'){
+  description('This is my First DSL Job')
+  parameters{
+    stringParam('tool', defaultValue='docker', description='Check the docekr version')
+    choiceParam('options', ['Version (default)' , 'ps'])
+    booleanParam('required',true)
+  }
+   wrappers{
+        timestamps() 
+      }
+    steps{
+     shell ("echo 'HelloWorld'")
+      shell ('docker --version')
+    }
+  displayName('DSL-Test')
+  scm{
+    git('https://github.com/pavanh96/test-1.git' ,'main')
+  }
+}
