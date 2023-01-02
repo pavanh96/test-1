@@ -1,0 +1,9 @@
+groups:
+  - name: example
+    rules:
+    - record: job:http_inprogress_requests:sum
+      expr: avg without(cpu)(rate(node_cpu_seconds_total {mode='idle'} [5m]))
+  - name: http
+    rules:
+    - record: job:http_request:avg
+      expr: avg without(handler)(rate(prometheus_http_requests_total {job='prometheus'} [3m]))
