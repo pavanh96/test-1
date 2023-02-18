@@ -1,5 +1,5 @@
-FROM alpine:3.4
+FROM ubuntu
 LABEL name="kumar"
-RUN apk update
-RUN apk add vim
-RUN apk add curl
+RUN apt update
+RUN apt install zip -y
+
