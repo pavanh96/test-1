@@ -1,5 +1,4 @@
-FROM ubuntu
+FROM busybox:latest
 LABEL name="kumar"
-RUN apt update
-RUN apt install git 
+
 
