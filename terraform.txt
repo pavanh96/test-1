@@ -1,0 +1,4 @@
+jenkins with terraform
+add credi
+use aws configure and get .aws -> folder and movie it into /var/lib/jenkins
+and change chown -R jenkins ./ of .aws folder
