@@ -1,0 +1,54 @@
+pipeline{
+    agent any
+    stages{
+        stage('git'){
+            steps{
+                git branch: 'terraform', changelog: false, poll: false, url: 'https://github.com/pavanh96/test-1.git'
+            }
+        }
+        stage('Terraform version'){
+            steps{
+                sh 'terraform version'
+            }
+        }
+        stage('Aws login'){
+            steps{
+           withCredentials([[
+           $class: 'AmazonWebServicesCredentialsBinding', 
+           credentialsId: 'aws', 
+           usernameVariable: 'AWS_ACCESS_KEY_ID', 
+           passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+           }
+           sh 'aws s3 ls'
+        }
+        }
+        stage('terraform init'){
+        steps{
+                sh 'terraform init'
+            }
+        }
+        stage('Terraform validate'){
+            steps{
+                sh 'terraform validate'
+            }
+        }
+        stage('Terraform plan'){
+            steps{
+                sh 'terraform plan'
+            }
+        }
+        stage('Terraform Apply'){
+         input 
+        {
+        
+        message "Do you want to delete "
+        
+        }
+    
+            steps{
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+     
+    }
+}
