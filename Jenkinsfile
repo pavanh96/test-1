@@ -72,3 +72,63 @@ pipeline{
             mail bcc: '', body: 'Pipeline build not success', cc: '', from: 'halaharvipavan1996@gmail.com', replyTo: '', subject: 'The Pipeline failed', to: 'shikhardevops@gmail.com'
          } 
     }
+
+
+
+
+//extra
+
+
+
+
+pipeline{
+    agent any
+    tools{
+        maven 'maven-3.6.3'
+        
+    }
+    stages{
+        // stage('Build'){
+        //     steps{
+        //   sh "mvn clean install"
+        // }
+        // }
+        
+      
+        stage("java-17"){
+            tools{
+                jdk 'java-17'
+            }
+            steps{
+                sh 'java --version'
+            }
+        }
+        stage("java-11"){
+            tools{
+                jdk 'java-11'
+            }
+            
+            steps{
+                 
+                sh 'java --version'
+            }
+        }
+         stage("build & SonarQube analysis") {
+            steps {
+                script{
+              withSonarQubeEnv(installationName: 'sonar-9.9' , credentialsId: 'test' ) {
+                sh 'mvn clean package sonar:sonar'
+              }
+               timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+            }
+      
+            }
+        }
+        
+    }
+}
